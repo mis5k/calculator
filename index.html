@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>TypeScript Greeter</title>
+        <link rel="stylesheet" type="text/css" href="styles.css">
+        <script src="calculator.js"></script>
+    </head>
+    <body>
+        <table class="table">
+            <tr>
+                <th class="text" colspan="4"><p id="mainExp">0</p></ted>
+            </tr>    
+            <tr>
+                <td>
+                    <div class="button" onclick="reset()">A/C</div>
+                </td>
+                <td>
+                    <div class="button" onclick="clickBtn('')">+/-</div>
+                </td>
+                <td>
+                    <div class="button" onclick="clickBtn('')">%</div>
+                </td>
+                <td>
+                    <div class="button" onclick="clickBtn('/')">/</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="button" onclick="clickBtn('7')">7</div>
+                </td>
+                <td>
+                    <div class="button" onclick="clickBtn('8')">8</div>
+                </td>
+                <td>
+                    <div class="button" onclick="clickBtn('9')">9</div>
+                </td>
+                <td>
+                    <div class="button" onclick="clickBtn('*')">X</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <divn class="button" onclick="clickBtn('4')">4</div>
+                </td>
+                <td>
+                    <div class="button" onclick="clickBtn('5')">5</div>
+                </td>
+                <td>
+                    <div class="button" onclick="clickBtn('6')">6</div>
+                </td>
+                <td>
+                    <div class="button" onclick="clickBtn('-')">-</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="button" onclick="clickBtn('1')">1</div>
+                </td>
+                <td>
+                    <div class="button" onclick="clickBtn('2')">2</div>
+                </td>
+                <td>
+                    <div class="button" onclick="clickBtn('3')">3</div>
+                </td>
+                <td>
+                    <div class="button" onclick="clickBtn('+')">+</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <div class="button" onclick="clickBtn('0')">0</divn>
+                </td>
+                <td>
+                    <div class="button" onclick="clickBtn('.')">.</div>
+                </td>
+                <td>
+                    <div class="button" onclick="getResult()">=</div>
+                </td>
+            </tr>
+        </table>        
+    </body>
+</html>
