@@ -38,7 +38,15 @@ var Calculator = (function () {
                 this.stack.push(input[i]);
             }
             else if (input[i] >= '0' && input[i] <= '9') {
-                this.exp.push(input[i]);
+                var temp = input[i];
+                for (var j = i + 1; j < input.length; j++) {
+                    if (this.isOperator(input[j])) {
+                        i = j - 1;
+                        break;
+                    }
+                    temp += input[j];
+                }
+                this.exp.push(temp);
             }
         }
         if (this.stack.length > 0) {
@@ -97,4 +105,5 @@ function reset() {
 }
 //let c:Calculator = new Calculator();
 //let result = c.getResult("2*3+6/2-4");
+//let result = c.getResult("2.5*2+6/3");
 //console.log(result); 
