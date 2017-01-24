@@ -14,6 +14,9 @@ var Calculator = (function () {
     Calculator.prototype.isOperator = function (str) {
         return (str == '+') || (str == '-') || (str == '*') || (str == '/');
     };
+    Calculator.prototype.isDigit = function (str) {
+        return (str >= '0' && str <= '9');
+    };
     Calculator.prototype.precedence = function (op) {
         if (op == '+' || op == '-') {
             return 0;
@@ -29,29 +32,37 @@ var Calculator = (function () {
         this.init();
         for (var i = 0; i < input.length; i++) {
             if (this.isOperator(input[i])) {
-                if (this.stack.length > 0
+                if (input[i] == '-' && (i == 0 || !this.isDigit(input[i - 1]))) {
+                    var temp = "";
+                    do {
+                        temp += input[i++];
+                    } while (i < input.length && !this.isOperator(input[i]));
+                    i = i - 1;
+                    this.exp.push(temp);
+                    continue;
+                }
+                else if (this.stack.length > 0
                     && (this.precedence(this.getStackTop()) >= this.precedence(input[i]))) {
                     while (this.stack.length > 0) {
-                        this.exp.push(this.stack.pop());
+                        var a = this.stack.pop();
+                        this.exp.push(a);
                     }
                 }
                 this.stack.push(input[i]);
             }
-            else if (input[i] >= '0' && input[i] <= '9') {
-                var temp = input[i];
-                for (var j = i + 1; j < input.length; j++) {
-                    if (this.isOperator(input[j])) {
-                        i = j - 1;
-                        break;
-                    }
-                    temp += input[j];
-                }
+            else if (this.isDigit(input[i])) {
+                var temp = "";
+                do {
+                    temp += input[i++];
+                } while (i < input.length && !this.isOperator(input[i]));
+                i = i - 1;
                 this.exp.push(temp);
             }
         }
         if (this.stack.length > 0) {
             while (this.stack.length > 0) {
-                this.exp.push(this.stack.pop());
+                var a = this.stack.pop();
+                this.exp.push(a);
             }
         }
     };
@@ -66,14 +77,14 @@ var Calculator = (function () {
     Calculator.prototype.calc = function () {
         this.stack = [];
         for (var i = 0; i < this.exp.length; i++) {
-            if (this.exp[i] >= '0' && this.exp[i] <= '9') {
-                this.stack.push(this.exp[i]);
-            }
-            else if (this.isOperator(this.exp[i])) {
+            if (this.isOperator(this.exp[i])) {
                 var right = Number(this.stack.pop());
                 var left = Number(this.stack.pop());
                 var val = this.evaluateOperator(this.exp[i], left, right);
                 this.stack.push(String(val));
+            }
+            else {
+                this.stack.push(this.exp[i]);
             }
         }
     };
@@ -85,14 +96,13 @@ var Calculator = (function () {
     return Calculator;
 }());
 var exp_temp = "";
+var c = new Calculator();
 function clickBtn(input) {
-    console.log("A");
     exp_temp += input;
     document.getElementById("mainExp").innerHTML = exp_temp;
 }
 function getResult() {
     console.log("getResult");
-    var c = new Calculator();
     var result = c.getResult(exp_temp);
     console.log("result : " + result);
     exp_temp = result;
@@ -103,7 +113,7 @@ function reset() {
     exp_temp = "";
     document.getElementById("mainExp").innerHTML = exp_temp;
 }
-//let c:Calculator = new Calculator();
 //let result = c.getResult("2*3+6/2-4");
 //let result = c.getResult("2.5*2+6/3");
-//console.log(result); 
+//let result = c.getResult("-2.5*2-4");
+//console.log(result);
