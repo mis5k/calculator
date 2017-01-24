@@ -93,7 +93,7 @@ class Calculator {
     }
 }
 
-let exp_temp:string = "";
+let exp_temp:string = "0";
 let c:Calculator = new Calculator();
 
 function clickBtn(input:string) {
@@ -110,7 +110,7 @@ function getResult() {
 }
 function reset() {
     console.log("reset");
-    exp_temp = "";        
+    exp_temp = "0";        
     document.getElementById("mainExp").innerHTML = exp_temp; 
 }
 

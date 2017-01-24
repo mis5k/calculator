@@ -8,17 +8,36 @@ body {
     border-collapse: collapse;
     width: 100%;
     height: 100%;
-    margin: 0px
+    margin: 0px;
+    background-color: black;
+}
+.table .main_exp {
+    height: 30%;
+    color: white; 
+    background-color: black;
+}
+.table .main_exp th p {
+    font-size: 80pt;
 }
 .table th, .table td {
     border: 1px solid black;
-}
-.text {
-      font-size: 30pt;
+    table-layout: fixed;
+    width: 25%;
 }
 .button {
     width: 100%;
     height: 100%;
     background: white;
-    font-size: 30pt;
+    text-align: center;
+    font-size: 50pt;
+}
+.bg_col_top_gray {
+   background-color: darkgray
+}
+.bg_col_gray {
+   background: lightgray;
+}
+.bg_col_orange {
+   background: orange;
+   color: white; 
 }

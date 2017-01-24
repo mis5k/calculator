@@ -95,7 +95,7 @@ var Calculator = (function () {
     };
     return Calculator;
 }());
-var exp_temp = "";
+var exp_temp = "0";
 var c = new Calculator();
 function clickBtn(input) {
     exp_temp += input;
@@ -110,7 +110,7 @@ function getResult() {
 }
 function reset() {
     console.log("reset");
-    exp_temp = "";
+    exp_temp = "0";
     document.getElementById("mainExp").innerHTML = exp_temp;
 }
 //let result = c.getResult("2*3+6/2-4");
