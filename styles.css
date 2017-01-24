@@ -15,9 +15,12 @@ body {
     height: 30%;
     color: white; 
     background-color: black;
+    text-align: right;
+    vertical-align: bottom;
 }
 .table .main_exp th p {
     font-size: 80pt;
+    margin-right: 40px;
 }
 .table th, .table td {
     border: 1px solid black;
@@ -25,11 +28,14 @@ body {
     width: 25%;
 }
 .button {
-    width: 100%;
-    height: 100%;
     background: white;
     text-align: center;
+    vertical-align: middle;
     font-size: 50pt;
+}
+.button .text {
+    text-align: center;
+    vertical-align: middle; 
 }
 .bg_col_top_gray {
    background-color: darkgray

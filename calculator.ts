@@ -93,7 +93,8 @@ class Calculator {
     }
 }
 
-let exp_temp:string = "0";
+let exp_temp:string = "";
+let init_data:string = "0";
 let c:Calculator = new Calculator();
 
 function clickBtn(input:string) {
@@ -110,8 +111,8 @@ function getResult() {
 }
 function reset() {
     console.log("reset");
-    exp_temp = "0";        
-    document.getElementById("mainExp").innerHTML = exp_temp; 
+    exp_temp = "";        
+    document.getElementById("mainExp").innerHTML = init_data; 
 }
 
 //let result = c.getResult("2*3+6/2-4");

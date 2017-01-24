@@ -95,7 +95,8 @@ var Calculator = (function () {
     };
     return Calculator;
 }());
-var exp_temp = "0";
+var exp_temp = "";
+var init_data = "0";
 var c = new Calculator();
 function clickBtn(input) {
     exp_temp += input;
@@ -110,8 +111,8 @@ function getResult() {
 }
 function reset() {
     console.log("reset");
-    exp_temp = "0";
-    document.getElementById("mainExp").innerHTML = exp_temp;
+    exp_temp = "";
+    document.getElementById("mainExp").innerHTML = init_data;
 }
 //let result = c.getResult("2*3+6/2-4");
 //let result = c.getResult("2.5*2+6/3");
