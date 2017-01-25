@@ -32,16 +32,16 @@ class Calculator {
         this.init();
 
         for(let i=0; i<input.length; i++) {
-           if(this.isOperator(input[i])) {
-              if(input[i] == '-' && (i == 0 || !this.isDigit(input[i-1]))) {
-                 let temp:string = "";
-                 do {
-                   temp += input[i++];
-                 } while(i <input.length && !this.isOperator(input[i]));
-                 i = i-1;
-                 this.exp.push(temp);
-                 continue;
-              } else if(this.stack.length > 0 
+           if(this.isDigit(input[i]) 
+                 ||(input[i] == '-' && (i == 0 || !this.isDigit(input[i-1])))) {
+              let temp:string = "";
+              do {
+                temp += input[i++];
+              } while(i <input.length && !this.isOperator(input[i]));
+              i--;
+              this.exp.push(temp);
+           } else if(this.isOperator(input[i])) {
+              if(this.stack.length > 0 
                   && (this.precedence(this.getStackTop()) >= this.precedence(input[i]))) {
                  while(this.stack.length > 0) {
                     let a = this.stack.pop();
@@ -49,15 +49,9 @@ class Calculator {
                  }
               }
               this.stack.push(input[i]);
-           } else if(this.isDigit(input[i])) {
-              let temp:string = "";
-              do {
-                temp += input[i++];
-              } while(i <input.length && !this.isOperator(input[i]));
-              i = i-1;
-              this.exp.push(temp);
            }
         } 
+
         if(this.stack.length > 0) {
             while(this.stack.length > 0) {
                let a =  this.stack.pop();
@@ -117,6 +111,6 @@ function reset() {
 
 //let result = c.getResult("2*3+6/2-4");
 //let result = c.getResult("2.5*2+6/3");
-//let result = c.getResult("-2.5*2-4");
+//let result = c.getResult("-2.5*2-4*-5");
 //console.log(result);
 

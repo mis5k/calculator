@@ -31,17 +31,17 @@ var Calculator = (function () {
     Calculator.prototype.postfix = function (input) {
         this.init();
         for (var i = 0; i < input.length; i++) {
-            if (this.isOperator(input[i])) {
-                if (input[i] == '-' && (i == 0 || !this.isDigit(input[i - 1]))) {
-                    var temp = "";
-                    do {
-                        temp += input[i++];
-                    } while (i < input.length && !this.isOperator(input[i]));
-                    i = i - 1;
-                    this.exp.push(temp);
-                    continue;
-                }
-                else if (this.stack.length > 0
+            if (this.isDigit(input[i])
+                || (input[i] == '-' && (i == 0 || !this.isDigit(input[i - 1])))) {
+                var temp = "";
+                do {
+                    temp += input[i++];
+                } while (i < input.length && !this.isOperator(input[i]));
+                i--;
+                this.exp.push(temp);
+            }
+            else if (this.isOperator(input[i])) {
+                if (this.stack.length > 0
                     && (this.precedence(this.getStackTop()) >= this.precedence(input[i]))) {
                     while (this.stack.length > 0) {
                         var a = this.stack.pop();
@@ -49,14 +49,6 @@ var Calculator = (function () {
                     }
                 }
                 this.stack.push(input[i]);
-            }
-            else if (this.isDigit(input[i])) {
-                var temp = "";
-                do {
-                    temp += input[i++];
-                } while (i < input.length && !this.isOperator(input[i]));
-                i = i - 1;
-                this.exp.push(temp);
             }
         }
         if (this.stack.length > 0) {
@@ -116,5 +108,5 @@ function reset() {
 }
 //let result = c.getResult("2*3+6/2-4");
 //let result = c.getResult("2.5*2+6/3");
-//let result = c.getResult("-2.5*2-4");
+//let result = c.getResult("-2.5*2-4*-5");
 //console.log(result);
