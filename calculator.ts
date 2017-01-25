@@ -93,7 +93,7 @@ let c:Calculator = new Calculator();
 
 function clickBtn(input:string) {
     exp_temp += input;
-    document.getElementById("mainExp").innerHTML = exp_temp; 
+    document.getElementById("mainExp").textContent = exp_temp; 
 }
 
 function getResult() {
@@ -101,12 +101,12 @@ function getResult() {
     let result = c.getResult(exp_temp);
     console.log("result : " + result);
     exp_temp = result;
-    document.getElementById("mainExp").innerHTML = exp_temp;
+    document.getElementById("mainExp").textContent = exp_temp;
 }
 function reset() {
     console.log("reset");
     exp_temp = "";        
-    document.getElementById("mainExp").innerHTML = init_data; 
+    document.getElementById("mainExp").textContent = init_data; 
 }
 
 //let result = c.getResult("2*3+6/2-4");

@@ -92,19 +92,19 @@ var init_data = "0";
 var c = new Calculator();
 function clickBtn(input) {
     exp_temp += input;
-    document.getElementById("mainExp").innerHTML = exp_temp;
+    document.getElementById("mainExp").textContent = exp_temp;
 }
 function getResult() {
     console.log("getResult");
     var result = c.getResult(exp_temp);
     console.log("result : " + result);
     exp_temp = result;
-    document.getElementById("mainExp").innerHTML = exp_temp;
+    document.getElementById("mainExp").textContent = exp_temp;
 }
 function reset() {
     console.log("reset");
     exp_temp = "";
-    document.getElementById("mainExp").innerHTML = init_data;
+    document.getElementById("mainExp").textContent = init_data;
 }
 //let result = c.getResult("2*3+6/2-4");
 //let result = c.getResult("2.5*2+6/3");
