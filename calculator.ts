@@ -10,8 +10,12 @@ class Calculator {
     public getStackTop(): string {
         return this.stack[this.stack.length - 1];
     }
-    public isStackEmpry():boolean {
-        return true;
+    public isStackEmpty():boolean {
+        if(this.stack.length > 0) {
+            return false;
+        } else {
+            return true;
+        }
     }
     public isOperator(str: string): boolean {
         return (str == '+') || (str == '-') || (str == '*') || (str == '/')
@@ -41,9 +45,9 @@ class Calculator {
               i--;
               this.exp.push(temp);
            } else if(this.isOperator(input[i])) {
-              if(this.stack.length > 0 
+              if(!this.isStackEmpty() 
                   && (this.precedence(this.getStackTop()) >= this.precedence(input[i]))) {
-                 while(this.stack.length > 0) {
+                 while(!this.isStackEmpty()) {
                     let a = this.stack.pop();
                     this.exp.push(a);
                  }
@@ -52,11 +56,9 @@ class Calculator {
            }
         } 
 
-        if(this.stack.length > 0) {
-            while(this.stack.length > 0) {
-               let a =  this.stack.pop();
-               this.exp.push(a);
-            }
+        while(!this.isStackEmpty()) {
+            let a =  this.stack.pop();
+            this.exp.push(a);
         }        
     }
     public evaluateOperator(op: string, left: number, right: number): number {

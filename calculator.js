@@ -8,8 +8,13 @@ var Calculator = (function () {
     Calculator.prototype.getStackTop = function () {
         return this.stack[this.stack.length - 1];
     };
-    Calculator.prototype.isStackEmpry = function () {
-        return true;
+    Calculator.prototype.isStackEmpty = function () {
+        if (this.stack.length > 0) {
+            return false;
+        }
+        else {
+            return true;
+        }
     };
     Calculator.prototype.isOperator = function (str) {
         return (str == '+') || (str == '-') || (str == '*') || (str == '/');
@@ -41,9 +46,9 @@ var Calculator = (function () {
                 this.exp.push(temp);
             }
             else if (this.isOperator(input[i])) {
-                if (this.stack.length > 0
+                if (!this.isStackEmpty()
                     && (this.precedence(this.getStackTop()) >= this.precedence(input[i]))) {
-                    while (this.stack.length > 0) {
+                    while (!this.isStackEmpty()) {
                         var a = this.stack.pop();
                         this.exp.push(a);
                     }
@@ -51,11 +56,9 @@ var Calculator = (function () {
                 this.stack.push(input[i]);
             }
         }
-        if (this.stack.length > 0) {
-            while (this.stack.length > 0) {
-                var a = this.stack.pop();
-                this.exp.push(a);
-            }
+        while (!this.isStackEmpty()) {
+            var a = this.stack.pop();
+            this.exp.push(a);
         }
     };
     Calculator.prototype.evaluateOperator = function (op, left, right) {
