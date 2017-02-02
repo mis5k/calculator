@@ -11,11 +11,7 @@ class Calculator {
         return this.stack[this.stack.length - 1];
     }
     public isStackEmpty():boolean {
-        if(this.stack.length > 0) {
-            return false;
-        } else {
-            return true;
-        }
+        return (this.stack.length > 0) ? false : true;
     }
     public isOperator(str: string): boolean {
         return (str == '+') || (str == '-') || (str == '*') || (str == '/')

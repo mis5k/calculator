@@ -9,12 +9,7 @@ var Calculator = (function () {
         return this.stack[this.stack.length - 1];
     };
     Calculator.prototype.isStackEmpty = function () {
-        if (this.stack.length > 0) {
-            return false;
-        }
-        else {
-            return true;
-        }
+        return (this.stack.length > 0) ? false : true;
     };
     Calculator.prototype.isOperator = function (str) {
         return (str == '+') || (str == '-') || (str == '*') || (str == '/');
