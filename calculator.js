@@ -44,16 +44,14 @@ var Calculator = (function () {
                 if (!this.isStackEmpty()
                     && (this.precedence(this.getStackTop()) >= this.precedence(input[i]))) {
                     while (!this.isStackEmpty()) {
-                        var a = this.stack.pop();
-                        this.exp.push(a);
+                        this.exp.push(this.stack.pop());
                     }
                 }
                 this.stack.push(input[i]);
             }
         }
         while (!this.isStackEmpty()) {
-            var a = this.stack.pop();
-            this.exp.push(a);
+            this.exp.push(this.stack.pop());
         }
     };
     Calculator.prototype.evaluateOperator = function (op, left, right) {

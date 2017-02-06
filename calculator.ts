@@ -44,8 +44,7 @@ class Calculator {
               if(!this.isStackEmpty() 
                   && (this.precedence(this.getStackTop()) >= this.precedence(input[i]))) {
                  while(!this.isStackEmpty()) {
-                    let a = this.stack.pop();
-                    this.exp.push(a);
+                    this.exp.push(this.stack.pop());
                  }
               }
               this.stack.push(input[i]);
@@ -53,8 +52,7 @@ class Calculator {
         } 
 
         while(!this.isStackEmpty()) {
-            let a =  this.stack.pop();
-            this.exp.push(a);
+            this.exp.push(this.stack.pop());
         }        
     }
     public evaluateOperator(op: string, left: number, right: number): number {
