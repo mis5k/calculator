@@ -1,0 +1,49 @@
+body {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    margin: 0px;
+}
+.table {
+    border-collapse: collapse;
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    background-color: black;
+}
+.table .main_exp {
+    height: 30%;
+    color: white; 
+    background-color: black;
+    text-align: right;
+    vertical-align: bottom;
+}
+.table .main_exp th p {
+    font-size: 80pt;
+    margin-right: 40px;
+}
+.table th, .table td {
+    border: 1px solid black;
+    table-layout: fixed;
+    width: 25%;
+}
+.button {
+    background: white;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 50pt;
+}
+.button .text {
+    text-align: center;
+    vertical-align: middle; 
+}
+.bg_col_top_gray {
+   background-color: darkgray
+}
+.bg_col_gray {
+   background: lightgray;
+}
+.bg_col_orange {
+   background: orange;
+   color: white; 
+}

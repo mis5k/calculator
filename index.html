@@ -3,78 +3,90 @@
     <head>
         <meta charset="utf-8">
         <title>TypeScript Greeter</title>
-        <link rel="stylesheet" type="text/css" href="styles.css">
-        <script src="calculator.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/styles.css">
+        <script src="system.js"></script>
+        <script type="text/javascript">
+            SystemJS.config({
+                baseURL: './src',
+                packages: { 
+                    '.': { 
+                        format: 'system',
+                        defaultExtension: 'js' 
+                    } 
+                }
+            });
+            SystemJS.import('main.js');
+        </script>
     </head>
     <body>
-        <table class="table">
+        <table class="table" id="table">
             <tr class="main_exp">
                 <th class="text" colspan="4"><p id="mainExp">0</p></th>
             </tr>    
             <tr>
-                <td class="button bg_col_top_gray" onclick="reset()">
+                <td id="reset" class="button bg_col_top_gray">
                     <div>A/C</div>
                 </td>
-                <td class="button bg_col_top_gray" onclick="clickBtn('-')">
+                <td id="reverse" value="-" class="button bg_col_top_gray">
                     <div>+/-</div>
                 </td>
-                <td class="button bg_col_top_gray" onclick="clickBtn('')">
+                <td id="percentage" value="%" class="button bg_col_top_gray">
                     <div>%</div>
                 </td>
-                <td class="button bg_col_orange" onclick="clickBtn('/')">
+                <td id="devide" value="/" class="button bg_col_orange">
                     <div>/</div>
                 </td>
             </tr>
             <tr>
-                <td class="button bg_col_gray" onclick="clickBtn('7')">
+                <td id="txt7" value="7" class="button bg_col_gray">
                     <div>7</div>
                 </td>
-                <td class="button bg_col_gray" onclick="clickBtn('8')">
-                    <div>8</div>
+                <td id="txt8" value="8" class="button bg_col_gray">
+                    <div value="8">8</div>
                 </td>
-                <td class="button bg_col_gray" onclick="clickBtn('9')">
+                <td id="txt8" value="9" class="button bg_col_gray">
                     <div>9</div>
                 </td>
-                <td class="button bg_col_orange" onclick="clickBtn('*')">
-                    <div>*</div>
+                <td id="multiply" value="*" class="button bg_col_orange">
+                    <div>X</div>
                 </td>
             </tr>
             <tr>
-                <td class="button bg_col_gray" onclick="clickBtn('4')">
+                <td id="txt4" value="4" class="button bg_col_gray">
                     <div>4</div>
                 </td>
-                <td class="button bg_col_gray" onclick="clickBtn('5')">
+                <td id="txt5" value="5" class="button bg_col_gray">
                     <div>5</div>
                 </td>
-                <td class="button bg_col_gray" onclick="clickBtn('6')">
+                <td id="txt6" value="6" class="button bg_col_gray">
                     <div>6</div>
                 </td>
-                <td  class="button bg_col_orange" onclick="clickBtn('-')">
+                <td id="minus" value="-" class="button bg_col_orange">
                     <div>-</div>
                 </td>
             </tr>
             <tr>
-                <td class="button bg_col_gray" onclick="clickBtn('1')">
+                <td id="txt1" value="1" class="button bg_col_gray">
                     <div>1</div>
                 </td>
-                <td class="button bg_col_gray" onclick="clickBtn('2')">
+                <td id="txt2" value="2" class="button bg_col_gray">
                     <div>2</div>
                 </td>
-                <td class="button bg_col_gray" onclick="clickBtn('3')">
+                <td id="txt3" value="3" class="button bg_col_gray">
                     <div>3</div>
                 </td>
-                <td class="button bg_col_orange" onclick="clickBtn('+')">
+                <td id="add" value="+" class="button bg_col_orange">
                     <div>+</div>
                 </td>
             </tr>
             <tr>
-                <td colspan="2" class="button bg_col_gray" onclick="clickBtn('0')">
+                <td id="txt0" value="0" colspan="2" class="button bg_col_gray">
                     <div>0</divn>
                 </td>
-                <td class="button bg_col_gray" onclick="clickBtn('.')">
+                <td id="dot" value="." class="button bg_col_gray">
                     <div>.</div>
                 </td>
-                <td class="button bg_col_orange" onclick="getResult()">
+                <td id="result" class="button bg_col_orange">
                     <div>=</div>
                 </td>
             </tr>
