@@ -20,7 +20,7 @@ export class Calculator {
         return (this.stack.length > 0) ? false : true;
     }
     public isOperator(str: string): boolean {
-        return (str == '+') || (str == '-') || (str == '*') || (str == '/')
+        return (['+', '-', '*', '/'].indexOf(str) >= 0)
     }
     public isDigit(str: string): boolean {
         return (str >= '0' && str <= '9');
@@ -73,10 +73,10 @@ export class Calculator {
         this.stack = [];
         for(let i=0; i<this.exp.length; i++) {
            if(this.isOperator(this.exp[i])) {
-               let right = Number(this.stack.pop());
-               let left = Number(this.stack.pop());
+               let right = parseInt(this.stack.pop());
+               let left = parseInt(this.stack.pop());
                let val = this.evaluateOperator(this.exp[i], left, right);
-               this.stack.push(String(val));
+               this.stack.push(val.toString());
            } else {
                  this.stack.push(this.exp[i]);
            }
@@ -89,19 +89,19 @@ export class Calculator {
     public getExp(): string {
         return this.exp_temp;
     }
-    public getLastNum(): string {
+    public getLastNum(): number {
         let str = this.exp_temp.substring(this.exp_temp.length-this.old_data.length, this.exp_temp.length);
         this.exp_temp = this.exp_temp.slice(0, -1 * this.old_data.length);
-        return str;
+        return parseInt(str);
     }
     public reverse() {
-        let num = Number(this.getLastNum()) * -1;
-        this.old_data = String(num);
+        let num = this.getLastNum()*-1;
+        this.old_data = num.toString();
         this.exp_temp += this.old_data;  
     }
     public percent() {
-        let num = Number(this.getLastNum()) / 100;
-        this.old_data = String(num);
+        let num = this.getLastNum()/100;
+        this.old_data = num.toString();
         this.exp_temp += this.old_data;
     }
     public getResult(): string {

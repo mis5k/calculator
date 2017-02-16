@@ -25,7 +25,7 @@ System.register([], function (exports_1, context_1) {
                     return (this.stack.length > 0) ? false : true;
                 };
                 Calculator.prototype.isOperator = function (str) {
-                    return (str == '+') || (str == '-') || (str == '*') || (str == '/');
+                    return (['+', '-', '*', '/'].indexOf(str) >= 0);
                 };
                 Calculator.prototype.isDigit = function (str) {
                     return (str >= '0' && str <= '9');
@@ -79,10 +79,10 @@ System.register([], function (exports_1, context_1) {
                     this.stack = [];
                     for (var i = 0; i < this.exp.length; i++) {
                         if (this.isOperator(this.exp[i])) {
-                            var right = Number(this.stack.pop());
-                            var left = Number(this.stack.pop());
+                            var right = parseInt(this.stack.pop());
+                            var left = parseInt(this.stack.pop());
                             var val = this.evaluateOperator(this.exp[i], left, right);
-                            this.stack.push(String(val));
+                            this.stack.push(val.toString());
                         }
                         else {
                             this.stack.push(this.exp[i]);
@@ -99,16 +99,16 @@ System.register([], function (exports_1, context_1) {
                 Calculator.prototype.getLastNum = function () {
                     var str = this.exp_temp.substring(this.exp_temp.length - this.old_data.length, this.exp_temp.length);
                     this.exp_temp = this.exp_temp.slice(0, -1 * this.old_data.length);
-                    return str;
+                    return parseInt(str);
                 };
                 Calculator.prototype.reverse = function () {
-                    var num = Number(this.getLastNum()) * -1;
-                    this.old_data = String(num);
+                    var num = this.getLastNum() * -1;
+                    this.old_data = num.toString();
                     this.exp_temp += this.old_data;
                 };
                 Calculator.prototype.percent = function () {
-                    var num = Number(this.getLastNum()) / 100;
-                    this.old_data = String(num);
+                    var num = this.getLastNum() / 100;
+                    this.old_data = num.toString();
                     this.exp_temp += this.old_data;
                 };
                 Calculator.prototype.getResult = function () {
