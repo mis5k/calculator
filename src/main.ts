@@ -10,7 +10,7 @@ let c:Calculator = new Calculator();
 
 function clickBtn(id:string) {
     let exp;
-    
+
     switch(id) {
         case "reset":
             console.log("reset");
@@ -27,8 +27,9 @@ function clickBtn(id:string) {
             c.reverse();
             exp = c.getExp();
             break;
-        case "percentage":
-            percentage();
+        case "percent":
+            c.percent();
+            exp = c.getExp();
             break;
         default:
             let value = document.getElementById(id).attributes["value"].value;
@@ -37,10 +38,6 @@ function clickBtn(id:string) {
             break;
     }
     document.getElementById("mainExp").textContent = exp; 
-}
-
-function percentage() {
-
 }
 
 let lis = document.getElementById("table").getElementsByTagName('td');

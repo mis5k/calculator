@@ -96,10 +96,18 @@ System.register([], function (exports_1, context_1) {
                 Calculator.prototype.getExp = function () {
                     return this.exp_temp;
                 };
-                Calculator.prototype.reverse = function () {
+                Calculator.prototype.getLastNum = function () {
                     var str = this.exp_temp.substring(this.exp_temp.length - this.old_data.length, this.exp_temp.length);
                     this.exp_temp = this.exp_temp.slice(0, -1 * this.old_data.length);
-                    var num = Number(str) * -1;
+                    return str;
+                };
+                Calculator.prototype.reverse = function () {
+                    var num = Number(this.getLastNum()) * -1;
+                    this.old_data = String(num);
+                    this.exp_temp += this.old_data;
+                };
+                Calculator.prototype.percent = function () {
+                    var num = Number(this.getLastNum()) / 100;
                     this.old_data = String(num);
                     this.exp_temp += this.old_data;
                 };

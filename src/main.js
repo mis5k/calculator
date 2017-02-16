@@ -23,8 +23,9 @@ System.register(["./calculator"], function (exports_1, context_1) {
                 c.reverse();
                 exp = c.getExp();
                 break;
-            case "percentage":
-                percentage();
+            case "percent":
+                c.percent();
+                exp = c.getExp();
                 break;
             default:
                 var value = document.getElementById(id).attributes["value"].value;
@@ -33,8 +34,6 @@ System.register(["./calculator"], function (exports_1, context_1) {
                 break;
         }
         document.getElementById("mainExp").textContent = exp;
-    }
-    function percentage() {
     }
     var calculator_1, init_data, c, lis, i;
     return {

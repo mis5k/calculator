@@ -89,12 +89,20 @@ export class Calculator {
     public getExp(): string {
         return this.exp_temp;
     }
-    public reverse() {
+    public getLastNum(): string {
         let str = this.exp_temp.substring(this.exp_temp.length-this.old_data.length, this.exp_temp.length);
         this.exp_temp = this.exp_temp.slice(0, -1 * this.old_data.length);
-        let num = Number(str) * -1;
+        return str;
+    }
+    public reverse() {
+        let num = Number(this.getLastNum()) * -1;
         this.old_data = String(num);
         this.exp_temp += this.old_data;  
+    }
+    public percent() {
+        let num = Number(this.getLastNum()) / 100;
+        this.old_data = String(num);
+        this.exp_temp += this.old_data;
     }
     public getResult(): string {
         this.postfix(this.exp_temp);
