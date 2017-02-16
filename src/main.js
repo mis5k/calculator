@@ -7,30 +7,32 @@ System.register(["./calculator"], function (exports_1, context_1) {
     //console.log(result);
     function clickBtn(id) {
         if (id == "reset") {
-            reset();
+            console.log("reset");
+            c.reset();
+            document.getElementById("mainExp").textContent = init_data;
         }
         else if (id == "result") {
-            getResult();
+            console.log("getResult");
+            var result = c.getResult();
+            document.getElementById("mainExp").textContent = result;
+        }
+        else if (id == "reverse") {
+            console.log("reverse");
+            c.reverse();
+            document.getElementById("mainExp").textContent = c.getExp();
+        }
+        else if (id == "percentage") {
+            percentage();
         }
         else {
             var value = document.getElementById(id).attributes["value"].value;
-            exp_temp += value;
-            document.getElementById("mainExp").textContent = exp_temp;
+            c.setExp(value);
+            document.getElementById("mainExp").textContent = c.getExp();
         }
     }
-    function getResult() {
-        console.log("getResult");
-        var result = c.getResult(exp_temp);
-        console.log("result : " + result);
-        exp_temp = result;
-        document.getElementById("mainExp").textContent = exp_temp;
+    function percentage() {
     }
-    function reset() {
-        console.log("reset");
-        exp_temp = "";
-        document.getElementById("mainExp").textContent = init_data;
-    }
-    var calculator_1, exp_temp, init_data, c, lis, i;
+    var calculator_1, init_data, c, lis, i;
     return {
         setters: [
             function (calculator_1_1) {
@@ -38,7 +40,6 @@ System.register(["./calculator"], function (exports_1, context_1) {
             }
         ],
         execute: function () {
-            exp_temp = "";
             init_data = "0";
             c = new calculator_1.Calculator();
             lis = document.getElementById("table").getElementsByTagName('td');

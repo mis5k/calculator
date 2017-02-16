@@ -1,7 +1,6 @@
 import { Calculator } from "./calculator";
 
-let exp_temp:string = "";
-let init_data:string = "0";
+let init_data = "0";
 let c:Calculator = new Calculator();
 
 //let result = c.getResult("2*3+6/2-4");
@@ -11,30 +10,31 @@ let c:Calculator = new Calculator();
 
 function clickBtn(id:string) {
     if(id == "reset") {
-        reset();
+        console.log("reset");
+        c.reset();     
+        document.getElementById("mainExp").textContent = init_data; 
     } else if(id == "result") {
-        getResult();
+        console.log("getResult");
+        let result = c.getResult();
+        document.getElementById("mainExp").textContent = result;
+    } else if(id == "reverse") {
+        console.log("reverse");
+        c.reverse();
+        document.getElementById("mainExp").textContent = c.getExp(); 
+    } else if(id == "percentage") {
+        percentage();
     } else {
         var value = document.getElementById(id).attributes["value"].value;
-        exp_temp += value;
-        document.getElementById("mainExp").textContent = exp_temp; 
+        c.setExp(value);
+        document.getElementById("mainExp").textContent = c.getExp();
     }
 }
 
-function getResult() {
-    console.log("getResult");
-    let result = c.getResult(exp_temp);
-    exp_temp = result;
-    document.getElementById("mainExp").textContent = exp_temp;
+function percentage() {
+
 }
 
-function reset() {
-    console.log("reset");
-    exp_temp = "";        
-    document.getElementById("mainExp").textContent = init_data; 
-}
-
-var lis = document.getElementById("table").getElementsByTagName('td');
+let lis = document.getElementById("table").getElementsByTagName('td');
 for (var i=0; i<lis.length; i++) {
         lis[i].addEventListener('click', function(e) {
             clickBtn(this.id); 

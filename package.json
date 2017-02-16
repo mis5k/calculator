@@ -1,7 +1,7 @@
 {
   "name": "calculator",
   "version": "1.0.0",
-  "main": "calculator.js",
+  "main": "src/main.js",
   "dependencies": {
     "lite-server": "^2.2.2",
     "typescript": "^2.1.5"
@@ -15,5 +15,13 @@
   },
   "author": "",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mis5k/calculator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mis5k/calculator/issues"
+  },
+  "homepage": "https://github.com/mis5k/calculator#readme",
   "description": ""
 }

@@ -7,10 +7,16 @@ System.register([], function (exports_1, context_1) {
         execute: function () {
             Calculator = (function () {
                 function Calculator() {
+                    this.exp_temp = "";
+                    this.old_data = "";
                 }
                 Calculator.prototype.init = function () {
                     this.exp = [];
                     this.stack = [];
+                };
+                Calculator.prototype.reset = function () {
+                    this.exp_temp = "";
+                    this.old_data = "";
                 };
                 Calculator.prototype.getStackTop = function () {
                     return this.stack[this.stack.length - 1];
@@ -83,9 +89,24 @@ System.register([], function (exports_1, context_1) {
                         }
                     }
                 };
-                Calculator.prototype.getResult = function (str) {
-                    this.postfix(str);
+                Calculator.prototype.setExp = function (str) {
+                    this.exp_temp += str;
+                    this.old_data = (this.isOperator(str)) ? "" : this.old_data + str;
+                };
+                Calculator.prototype.getExp = function () {
+                    return this.exp_temp;
+                };
+                Calculator.prototype.reverse = function () {
+                    var str = this.exp_temp.substring(this.exp_temp.length - this.old_data.length, this.exp_temp.length);
+                    this.exp_temp = this.exp_temp.slice(0, -1 * this.old_data.length);
+                    var num = Number(str) * -1;
+                    this.old_data = String(num);
+                    this.exp_temp += this.old_data;
+                };
+                Calculator.prototype.getResult = function () {
+                    this.postfix(this.exp_temp);
                     this.calc();
+                    this.reset();
                     return this.stack.pop();
                 };
                 return Calculator;

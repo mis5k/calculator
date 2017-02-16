@@ -2,10 +2,16 @@
 export class Calculator {
     private exp: string[];
     private stack: string[];
+    public exp_temp: string ="";
+    public old_data: string = "";
     
     public init() {
         this.exp = [];
-        this.stack = [];   
+        this.stack = [];
+    }
+    public reset() {
+        this.exp_temp = "";
+        this.old_data = "";
     }
     public getStackTop(): string {
         return this.stack[this.stack.length - 1];
@@ -76,9 +82,24 @@ export class Calculator {
            }
         }        
     }
-    public getResult(str: string): string {
-        this.postfix(str);
+    public setExp(str: string) {
+        this.exp_temp += str; 
+        this.old_data = (this.isOperator(str)) ? "" : this.old_data + str;
+    }
+    public getExp(): string {
+        return this.exp_temp;
+    }
+    public reverse() {
+        let str = this.exp_temp.substring(this.exp_temp.length-this.old_data.length, this.exp_temp.length);
+        this.exp_temp = this.exp_temp.slice(0, -1 * this.old_data.length);
+        let num = Number(str) * -1;
+        this.old_data = String(num);
+        this.exp_temp += this.old_data;  
+    }
+    public getResult(): string {
+        this.postfix(this.exp_temp);
         this.calc();
+        this.reset();
         return this.stack.pop();
     }
 }
