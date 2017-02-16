@@ -9,25 +9,34 @@ let c:Calculator = new Calculator();
 //console.log(result);
 
 function clickBtn(id:string) {
-    if(id == "reset") {
-        console.log("reset");
-        c.reset();     
-        document.getElementById("mainExp").textContent = init_data; 
-    } else if(id == "result") {
-        console.log("getResult");
-        let result = c.getResult();
-        document.getElementById("mainExp").textContent = result;
-    } else if(id == "reverse") {
-        console.log("reverse");
-        c.reverse();
-        document.getElementById("mainExp").textContent = c.getExp(); 
-    } else if(id == "percentage") {
-        percentage();
-    } else {
-        var value = document.getElementById(id).attributes["value"].value;
-        c.setExp(value);
-        document.getElementById("mainExp").textContent = c.getExp();
+    let exp;
+    
+    switch(id) {
+        case "reset":
+            console.log("reset");
+            c.reset();     
+            exp = init_data;
+            break;
+        case "result":
+            console.log("getResult");
+            let result = c.getResult();
+            exp = result;
+            break;
+        case "reverse":
+            console.log("reverse");
+            c.reverse();
+            exp = c.getExp();
+            break;
+        case "percentage":
+            percentage();
+            break;
+        default:
+            let value = document.getElementById(id).attributes["value"].value;
+            c.setExp(value);
+            exp = c.getExp();
+            break;
     }
+    document.getElementById("mainExp").textContent = exp; 
 }
 
 function percentage() {

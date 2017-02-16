@@ -6,29 +6,33 @@ System.register(["./calculator"], function (exports_1, context_1) {
     //let result = c.getResult("-2.5*2-4*-5");
     //console.log(result);
     function clickBtn(id) {
-        if (id == "reset") {
-            console.log("reset");
-            c.reset();
-            document.getElementById("mainExp").textContent = init_data;
+        var exp;
+        switch (id) {
+            case "reset":
+                console.log("reset");
+                c.reset();
+                exp = init_data;
+                break;
+            case "result":
+                console.log("getResult");
+                var result = c.getResult();
+                exp = result;
+                break;
+            case "reverse":
+                console.log("reverse");
+                c.reverse();
+                exp = c.getExp();
+                break;
+            case "percentage":
+                percentage();
+                break;
+            default:
+                var value = document.getElementById(id).attributes["value"].value;
+                c.setExp(value);
+                exp = c.getExp();
+                break;
         }
-        else if (id == "result") {
-            console.log("getResult");
-            var result = c.getResult();
-            document.getElementById("mainExp").textContent = result;
-        }
-        else if (id == "reverse") {
-            console.log("reverse");
-            c.reverse();
-            document.getElementById("mainExp").textContent = c.getExp();
-        }
-        else if (id == "percentage") {
-            percentage();
-        }
-        else {
-            var value = document.getElementById(id).attributes["value"].value;
-            c.setExp(value);
-            document.getElementById("mainExp").textContent = c.getExp();
-        }
+        document.getElementById("mainExp").textContent = exp;
     }
     function percentage() {
     }
